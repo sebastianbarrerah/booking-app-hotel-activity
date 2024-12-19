@@ -1,23 +1,16 @@
 package clases;
-
 import java.util.List;
 
 public class DiaSol extends Alojamiento {
-    private boolean incluirAlmuerzo;
-    private boolean incluirRefrigerio;
+    private Boolean incluirAlmuerzo;
+    private Boolean incluirRefrigerio;
 
-    public DiaSol() {
-    }
+    public DiaSol() {}
 
-    public DiaSol(String ciudad, String nombre, double precioBase, boolean incluirAlmuerzo, boolean incluirRefrigerio, double calificacion, List<Habitacion> habitaciones) {
+    public DiaSol(String ciudad, String nombre, Double precioBase, Boolean incluirAlmuerzo, Boolean incluirRefrigerio, Double calificacion, List<Habitacion> habitaciones) {
         super(ciudad,"Dia de Sol",nombre,precioBase, calificacion, habitaciones);
         this.incluirAlmuerzo = incluirAlmuerzo;
         this.incluirRefrigerio = incluirRefrigerio;
-    }
-
-    double calcularPrecioTotal() {
-        double precioTotal;
-        return precioTotal = precioBase;
     }
 
     public String mostrarInformacion() {

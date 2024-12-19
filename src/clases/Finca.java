@@ -1,17 +1,12 @@
 package clases;
-
 import java.util.List;
 
 public class Finca extends Alojamiento {
 
-    public Finca() {
-    }
+    public Finca() {}
 
-    public Finca(String ciudad, String nombre, double precioBase, double calificacion, List<Habitacion> habitaciones)  {
+    public Finca(String ciudad, String nombre, Double precioBase, Double calificacion, List<Habitacion> habitaciones)  {
         super(ciudad,"Finca",nombre,precioBase, calificacion, habitaciones);
-    }
-    double calcularPrecioTotal() {
-        return precioBase * 1.15; // Ejemplo: 15% de incremento
     }
 
     public String mostrarInformacion() {

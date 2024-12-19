@@ -1,17 +1,16 @@
 package clases;
-
 import java.util.List;
 
 public class Hotel extends Alojamiento {
 
-    public Hotel(String ciudad, String nombre, double precioBase, double calificacion, List<Habitacion> habitaciones) {
+    public Hotel(String ciudad, String nombre, Double precioBase, Double calificacion, List<Habitacion> habitaciones) {
         super(ciudad, "Hotel", nombre, precioBase, calificacion, habitaciones);
     }
 
 
     double calcularPrecioTotal() {
 
-        return getPrecioBase() * 1.2; // Ejemplo: 20% de incremento
+        return getPrecioBase() * 1.2;
     }
 
     public String mostrarInformacion() {

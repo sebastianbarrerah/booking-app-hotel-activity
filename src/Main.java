@@ -1,13 +1,12 @@
 import clases.*;
 import java.util.*;
 
-
-import java.lang.reflect.Array;
-
 public class Main {
 
     static List<Habitacion> habitaciones = new ArrayList<>();
     static List<Alojamiento> hoteles = new ArrayList<>();
+    private static List<Reserva> listaReservas = new ArrayList<>();
+
 
     public static void main(String[] args) {
         cargaInicial();
@@ -28,9 +27,9 @@ public class Main {
         while (opcion != 5) {
             switch (opcion) {
                 case 1 -> buscarHoteles(scanner);
-                case 2 -> System.out.println("Confirmar habitaciones disponibles");
-                case 3 -> System.out.println("Reservar");
-                case 4 -> System.out.println("Actualizar reserva");
+                case 2 -> confirmarHabitaciones(scanner);
+                case 3 -> realizarReserva(scanner);
+                case 4 -> actualizarReserva(scanner);
                 case 5 -> System.out.println("Gracias por usar la aplicación Booking Hoteles");
                 default -> System.out.println("Opción no válida");
             }
@@ -48,32 +47,28 @@ public class Main {
         scanner.close();
     }
 
-
     public static void cargaInicial() {
-        habitaciones.add(new Habitacion("cama sencilla", "Sencilla", 500000, 2, 1));
-        habitaciones.add(new Habitacion("cama doble y tv en el cuarto", "Doble", 600000, 2, 2));
-        habitaciones.add(new Habitacion("dos camas, tv en cuarto, equipo de sonido", "Triple", 700000, 3, 3));
-        habitaciones.add(new Habitacion("suite de lujo", "Suite de lujo", 1000000, 2, 2));
-        habitaciones.add(new Habitacion("cama individual", "Económica", 350000, 1, 1));
-        habitaciones.add(new Habitacion("habitación para familias con 3 camas", "Familiar", 850000, 4, 2));
-        habitaciones.add(new Habitacion("habitación con cama queen y oficina", "Ejecutiva", 950000, 2, 1));
-        habitaciones.add(new Habitacion("habitación con cama doble y zona de estar", "Doble con sala", 700000, 2, 2));
-        habitaciones.add(new Habitacion("habitación tipo loft con cocina", "Loft", 1100000, 2, 1));
-        habitaciones.add(new Habitacion("habitación para pareja, jacuzzi privado", "Romántica", 1300000, 2, 1));
-        habitaciones.add(new Habitacion("cabaña con vista al campo y piscina", "Finca campestre", 1200000, 2, 2));
-        habitaciones.add(new Habitacion("finca con cama rústica y chimenea", "Finca moderna", 950000, 2, 2));
-        habitaciones.add(new Habitacion("habitacion con cama de campo y porche", "Finca rústica", 800000, 2, 2));
-        habitaciones.add(new Habitacion("cabaña con vista al lago y terraza", "Día de sol familia", 1500000, 2, 2));
-        habitaciones.add(new Habitacion("bungalow con acceso directo a la zona verde", "Día de sol colonial", 2000000, 2, 2));
-        habitaciones.add(new Habitacion("suite con piscina privada", "Día de sol turistico", 2500000, 2, 2));
+        habitaciones.add(new Habitacion("cama sencilla", "Sencilla", 50.0000, 2, 1));
+        habitaciones.add(new Habitacion("cama doble y tv en el cuarto", "Doble", 60.0000, 2, 2));
+        habitaciones.add(new Habitacion("dos camas, tv en cuarto, equipo de sonido", "Triple", 70.0000, 3, 3));
+        habitaciones.add(new Habitacion("suite de lujo", "Suite de lujo", 100.0000, 2, 2));
+        habitaciones.add(new Habitacion("cama individual", "Económica", 350.000, 1, 1));
+        habitaciones.add(new Habitacion("habitación para familias con 3 camas", "Familiar", 850.000, 4, 2));
+        habitaciones.add(new Habitacion("habitación con cama queen y oficina", "Ejecutiva", 950.000, 2, 1));
+        habitaciones.add(new Habitacion("habitación con cama doble y zona de estar", "Doble con sala", 700.000, 2, 2));
+        habitaciones.add(new Habitacion("habitación tipo loft con cocina", "Loft", 110.0000, 2, 1));
+        habitaciones.add(new Habitacion("habitación para pareja, jacuzzi privado", "Romántica", 130.0000, 2, 1));
+        habitaciones.add(new Habitacion("cabaña con vista al campo y piscina", "Finca campestre", 1200.000, 2, 2));
+        habitaciones.add(new Habitacion("finca con cama rústica y chimenea", "Finca moderna", 950.000, 2, 2));
+        habitaciones.add(new Habitacion("habitacion con cama de campo y porche", "Finca rústica", 800.000, 2, 2));
+        habitaciones.add(new Habitacion("cabaña con vista al lago y terraza", "Día de sol familia", 150.0000, 2, 2));
+        habitaciones.add(new Habitacion("bungalow con acceso directo a la zona verde", "Día de sol colonial", 200.0000, 2, 2));
+        habitaciones.add(new Habitacion("suite con piscina privada", "Día de sol turistico", 250.0000, 2, 2));
 
-
-
-
-        hoteles.add(new Hotel("Medellin", "Hotel Sol", 100000, 4.5, habitaciones.subList(0, 4)));
-        hoteles.add(new Apartamento("Medellin", "Apartamento Colonial", 80000, 4.2, habitaciones.subList(5, 9)));
-        hoteles.add(new Finca("Medellin", "Finca Colonial", 180000, 3.5, habitaciones.subList(10, 13)));
-        hoteles.add(new DiaSol("Medellin", "El paraiso", 230000, true, true, 5, habitaciones.subList(14, 15)));
+        hoteles.add(new Hotel("Medellin", "Hotel Sol", 100.000, 4.5, habitaciones.subList(0, 4)));
+        hoteles.add(new Apartamento("Medellin", "Apartamento Colonial", 80.000, 4.2, habitaciones.subList(5, 9)));
+        hoteles.add(new Finca("Medellin", "Finca Colonial", 180.000, 3.5, habitaciones.subList(10, 13)));
+        hoteles.add(new DiaSol("Medellin", "El paraiso", 230.000, true, true, 5.2, habitaciones.subList(14, 15)));
     }
 
     private static void buscarHoteles(Scanner scanner) {
@@ -103,7 +98,7 @@ public class Main {
             return;
         }
 
-        int dias = fin - inicio + 1; // Calcula la cantidad de días.
+        int dias = fin - inicio + 1;
 
         for (Alojamiento alojamiento : hoteles) {
             if (alojamiento.getCiudad().equalsIgnoreCase(ciudad) &&
@@ -112,7 +107,6 @@ public class Main {
                 double precioBase = alojamiento.getPrecioBase();
                 double precioTotal = precioBase * dias * habitacionesRequeridas;
 
-                // Aplicar descuentos o aumentos según las fechas.
                 if (fin >= 26) {
                     double aumento = precioTotal * 0.15;
                     precioTotal += aumento;
@@ -127,10 +121,7 @@ public class Main {
                     System.out.println("* Se aplica un descuento del 8% por hospedarse del 5 al 10. Monto: $" + descuento);
                 }
 
-                // Mostrar información del alojamiento y precio total.
                 System.out.println(alojamiento.mostrarInformacion() + precioBase + precioTotal);
-
-                // Si es un 'DiaSol', mostrar detalles adicionales.
                 if (alojamiento instanceof DiaSol) {
                     DiaSol diaSol = (DiaSol) alojamiento;
                     System.out.println("Incluye almuerzo: " + diaSol.isIncluirAlmuerzo());
@@ -138,6 +129,192 @@ public class Main {
                 }
             }
         }
+    }
+
+    private static void confirmarHabitaciones(Scanner scanner) {
+        System.out.print("Ingrese el nombre del alojamiento: ");
+        String nombre = scanner.nextLine();
+
+        System.out.print("Ingrese el día de inicio (01-31): ");
+        int inicio = scanner.nextInt();
+
+        System.out.print("Ingrese el día de finalización (01-31): ");
+        int fin = scanner.nextInt();
+
+        scanner.nextLine();
+
+        if (inicio > fin || inicio < 1 || fin > 31) {
+            System.out.println("Fechas inválidas. Intente de nuevo.");
+            return;
+        }
+
+        for (Alojamiento alojamiento : hoteles) {
+            if (alojamiento.getNombre().equalsIgnoreCase(nombre)) {
+                System.out.println("Habitaciones disponibles:");
+                for (Habitacion habitacion : alojamiento.getHabitaciones()) {
+                    int disponibilidadInicio = habitacion.getCapacidadMayores();
+
+                    if (disponibilidadInicio < inicio || disponibilidadInicio > fin) {
+                        System.out.println(habitacion.mostrarInformacion());
+                    }
+                }
+                return;
+            }
+        }
+        System.out.println("No se encontraron alojamientos con ese nombre.");
+    }
+
+    private static void realizarReserva(Scanner scanner) {
+        System.out.print("Ingrese su nombre: ");
+        String nombre = scanner.nextLine();
+
+        System.out.print("Ingrese su apellido: ");
+        String apellido = scanner.nextLine();
+
+        System.out.print("Ingrese su email: ");
+        String email = scanner.nextLine();
+
+        System.out.print("Ingrese su fecha de nacimiento: ");
+        String fechaNacimiento = scanner.nextLine();
+
+        System.out.print("Ingrese su nacionalidad: ");
+        String nacionalidad = scanner.nextLine();
+
+        System.out.print("Ingrese su teléfono: ");
+        String telefono = scanner.nextLine();
+
+        System.out.print("Hora de llegada (formato HH:MM): ");
+        String horaLlegada = scanner.nextLine();
+
+        System.out.print("Ingrese el nombre del alojamiento: ");
+        String nombreAlojamiento = scanner.nextLine();
+
+        System.out.print("Ingrese el día de inicio (01-31): ");
+        int inicio = scanner.nextInt();
+
+        System.out.print("Ingrese el día de finalización (01-31): ");
+        int fin = scanner.nextInt();
+
+        scanner.nextLine();
+
+        for (Alojamiento alojamiento : hoteles) {
+            if (alojamiento.getNombre().equalsIgnoreCase(nombreAlojamiento)) {
+                System.out.println("Procesando reserva...");
+                Cliente cliente = new Cliente(nombre, apellido, email, telefono, nacionalidad, fechaNacimiento);
+
+                List<Habitacion> disponibles = new ArrayList<>();
+                for (Habitacion habitacion : alojamiento.getHabitaciones()) {
+                    int disponibilidadInicio = habitacion.getCapacidadMayores();
+                    if (disponibilidadInicio < inicio || disponibilidadInicio > fin) {
+                        disponibles.add(habitacion);
+                    }
+                }
+
+                if (disponibles.isEmpty()) {
+                    System.out.println("No hay habitaciones disponibles para las fechas seleccionadas.");
+                    return;
+                }
+
+                System.out.println("Seleccione una habitación para reservar:");
+                for (int i = 0; i < disponibles.size(); i++) {
+                    System.out.printf("%d. %s\n", i + 1, disponibles.get(i).mostrarInformacion());
+                }
+
+                System.out.print("Ingrese el número de la habitación seleccionada: ");
+                int seleccion = scanner.nextInt();
+
+                if (seleccion < 1 || seleccion > disponibles.size()) {
+                    System.out.println("Selección inválida.");
+                    return;
+                }
+
+                Habitacion habitacionSeleccionada = disponibles.get(seleccion - 1);
+                alojamiento.getHabitaciones().remove(habitacionSeleccionada);
+
+                Reserva<Object> nuevaReserva = new Reserva<>(cliente, nombreAlojamiento, habitacionSeleccionada, 4, String.valueOf(inicio), String.valueOf(fin), horaLlegada);
+                ReservaImplementacion reservaImplementacion = new ReservaImplementacion(nuevaReserva);
+                reservaImplementacion.confirmarReserva();
+
+                System.out.println("Habitación reservada: " + habitacionSeleccionada.mostrarInformacion());
+                System.out.println("Reserva realizada exitosamente.");
+                return;
+            }
+        }
+        System.out.println("No se encontró el alojamiento.");
+    }
+
+    private static void actualizarReserva(Scanner scanner) {
+        System.out.print("Ingrese el correo registrado: ");
+        String email = scanner.nextLine();
+
+        System.out.print("Ingrese su fecha de nacimiento (año-mes-dia): ");
+        String fechaNacimiento = scanner.nextLine();
+
+        Reserva reserva = buscarReservaPorEmailYFecha(email, fechaNacimiento);
+        if (reserva == null) {
+            System.out.println("No se encontró una reserva con los datos proporcionados.");
+            return;
+        }
+
+        System.out.println("Autenticación exitosa.");
+        System.out.println("¿Desea cambiar habitación o alojamiento? (1: Habitación, 2: Alojamiento)");
+        int opcion = scanner.nextInt();
+
+        if (opcion == 1) {
+            cambiarHabitacion(reserva, scanner);
+        } else if (opcion == 2) {
+            cambiarAlojamiento(reserva, scanner);
+        } else {
+            System.out.println("Opción inválida.");
+        }
+    }
+
+    private static Reserva buscarReservaPorEmailYFecha(String email, String fechaNacimiento) {
+        for (Reserva reserva : listaReservas) {
+            if (reserva.getCliente().getEmail().equalsIgnoreCase(email) &&
+                    reserva.getCliente().getFechaNacimiento().equals(fechaNacimiento)) {
+                return reserva;
+            }
+        }
+        return null;
+    }
+
+    private static void cambiarHabitacion(Reserva reserva, Scanner scanner) {
+        System.out.println("Habitación actual:");
+        System.out.println(reserva.getHabitacion().mostrarInformacion());
+
+        System.out.println("Habitaciones disponibles:");
+        List<Habitacion> disponibles = new ArrayList<>();
+        for (Habitacion habitacion : ((Alojamiento) reserva.getAlojamiento()).getHabitaciones()) {
+            if (!habitacion.equals(reserva.getHabitacion())) {
+                disponibles.add(habitacion);
+                System.out.printf("%d. %s\n", disponibles.size(), habitacion.mostrarInformacion());
+            }
+        }
+        if (disponibles.isEmpty()) {
+            System.out.println("No hay otras habitaciones disponibles.");
+            return;
+        }
+        System.out.print("Seleccione una nueva habitación: ");
+        int seleccion = scanner.nextInt();
+
+        if (seleccion < 1 || seleccion > disponibles.size()) {
+            System.out.println("Selección inválida.");
+            return;
+        }
+
+        Habitacion nuevaHabitacion = disponibles.get(seleccion - 1);
+        reserva.setHabitacion(nuevaHabitacion);
+
+        System.out.println("Habitación cambiada exitosamente.");
+        ReservaImplementacion reservaImpl = new ReservaImplementacion(reserva);
+    }
+
+    private static void cambiarAlojamiento(Reserva reserva, Scanner scanner) {
+        System.out.println("Se cancelará la reserva actual.");
+        listaReservas.remove(reserva);
+        System.out.println("Reserva cancelada. Por favor, realice una nueva reserva.");
+        realizarReserva(scanner);
     }
 
 
